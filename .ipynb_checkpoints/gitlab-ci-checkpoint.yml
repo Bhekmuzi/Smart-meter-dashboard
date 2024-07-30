@@ -1,0 +1,15 @@
+image: python:3.8
+
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  before_script:
+    - pip install -r requirements.txt
+  script:
+    - python dash_app.py &
+  environment:
+    name: production
+  only:
+    - master  # Deploy only when changes are pushed to master branch
